@@ -96,12 +96,13 @@ public class GuessNumber {
         String input = readInput();
         System.out.println("要猜的数字是：" + input + "。嘘！不要告诉别人哦！");
         GuessNumber guessNumber = new GuessNumber(input);
-        System.out.println("让我们来猜一猜是哪4个数字呢？");
+        System.out.println("让我们来猜一猜是哪4个数字呢？你一共有6次机会哦！");
         System.out.println("游戏过程中可以输入<quit>来退出游戏。");
         for(int i = 0; i < 6; i ++) {
             System.out.println("请输入第" + (i + 1) + "次要猜测的数字：");
             String num = readInput();
             if(num.toLowerCase().equals("quit")) {
+                System.out.println("想不到你居然放弃了，鄙视你。");
                 break;
             }
             String result =  guessNumber.validate(num);
