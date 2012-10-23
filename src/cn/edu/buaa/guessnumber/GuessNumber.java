@@ -3,6 +3,7 @@ package cn.edu.buaa.guessnumber;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,6 +14,8 @@ import java.io.InputStreamReader;
  */
 public class GuessNumber {
     private byte[] input;
+
+    // 构造器
     public GuessNumber(String input) {
         this.input = stringToBytes(input);
     }
@@ -58,27 +61,85 @@ public class GuessNumber {
         return b;
     }
 
+    /**
+     * 将一个字符串转换为byte数组
+     * @param num   字符串
+     * @return  byte数组
+     */
     private byte[] stringToBytes(String num) {
         return num.getBytes();
     }
 
-    private static String readInput() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    /**
+     * 读取用户输入的选择项
+     * @return  选择项
+     */
+    private static String readChoice() {
         String input = "";
         while (true) {
-            try {
-                input = br.readLine();
-                if(!"quit".equals(input.toLowerCase()) && !input.matches("(?!\\d*(\\d)\\d*\\1\\d*)\\d{4}")) {
-                    System.out.println("你没有按照要求输入哦，重新输入吧：");
-                } else {
-                    break;
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            input = readInput();
+            if(!"quit".equals(input.toLowerCase()) && !input.equals("1") && !input.equals("2")) {
+                System.out.println("没有你的选项哦，请重新输入吧：");
+            } else {
+                break;
             }
         }
         return input;
+    }
+
+    /**
+     * 读取用户输入的数字或者quit
+     * @return  数字或者quit
+     */
+    private static String readInputNum() {
+        String input = "";
+        while (true) {
+            input = readInput();
+            if(!"quit".equals(input.toLowerCase()) && !validateNum(input)) {
+                System.out.println("你没有按照要求输入哦，重新输入吧：");
+            } else {
+                break;
+            }
+        }
+        return input;
+    }
+
+    private static boolean validateNum(String input) {
+        return input != null && input.matches("(?!\\d*(\\d)\\d*\\1\\d*)\\d{4}");
+    }
+
+    /**
+     * 读取用户输入的字符串
+     * @return  输入的字符串
+     */
+    private static String readInput() {
+        String input = "";
+        try {
+            input = new BufferedReader(new InputStreamReader(System.in)).readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return input;
+    }
+
+    /**
+     * 生成一个随机的不重复的4位数
+     * @return  随机的不重复的4位数
+     */
+    private static String generateRandomNum() {
+        String result = "";
+        Random random = new Random();
+        while (true) {
+            String s = String.valueOf(random.nextInt(10));
+            if(result.indexOf(s) < 0) {
+                result += s;
+            }
+            if(result.length() >= 4) {
+                break;
+            }
+
+        }
+        return result;
     }
 
     /**
@@ -92,15 +153,33 @@ public class GuessNumber {
      */
     public static void main(String[] args) {
         System.out.println("Game Start...");
-        System.out.println("请输入4位数让别人来猜一猜，不能重复：");
-        String input = readInput();
+        System.out.println("游戏过程中可以输入<quit>来退出游戏。");
+        System.out.println("请选择一种游戏方式：");
+        System.out.println("1.由系统自动创建一个4位不重复的数字来进行猜数字游戏；");
+        System.out.println("2.由你输入一个4位不重复的数字来进行猜数字游戏。");
+        System.out.println("请选择（请输入1或2）：");
+        String choice = readChoice();
+        if(choice.toLowerCase().equals("quit")) {
+            System.out.println("还没开始就退出，我好伤心哦。");
+            System.exit(0);
+        }
+        String input = "";
+        if(choice.equals("1")) {
+            input = generateRandomNum();
+        } else {
+            System.out.println("请输入4位数让别人来猜一猜，不能重复：");
+            input = readInputNum();
+            if(input.toLowerCase().equals("quit")) {
+                System.out.println("还没开始就退出，我好伤心哦。");
+                System.exit(0);
+            }
+        }
         System.out.println("要猜的数字是：" + input + "。嘘！不要告诉别人哦！");
         GuessNumber guessNumber = new GuessNumber(input);
         System.out.println("让我们来猜一猜是哪4个数字呢？你一共有6次机会哦！");
-        System.out.println("游戏过程中可以输入<quit>来退出游戏。");
         for(int i = 0; i < 6; i ++) {
             System.out.println("请输入第" + (i + 1) + "次要猜测的数字：");
-            String num = readInput();
+            String num = readInputNum();
             if(num.toLowerCase().equals("quit")) {
                 System.out.println("想不到你居然放弃了，鄙视你。");
                 break;
@@ -117,4 +196,6 @@ public class GuessNumber {
         }
         System.out.println("Game Over...");
     }
+
+
 }
