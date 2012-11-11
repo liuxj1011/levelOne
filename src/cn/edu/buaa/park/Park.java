@@ -28,14 +28,15 @@ public class Park {
         this.carList.add(car);
     }
 
-    public void out(Car car) {
-        if(this.carList.size() <= 0) {
-            throw new ParkException("停车场没有停任何车，不能取车。");
-        }
+    public Car out(Car car) {
+//        if(this.carList.size() <= 0) {
+//            throw new ParkException("停车场没有停任何车，不能取车。");
+//        }
+        Car outCar = null;
         if(this.carList.contains(car)) {
+            outCar = this.carList.get(this.carList.indexOf(car));
             this.carList.remove(car);
-        } else {
-            throw new ParkException("你搞错了，你的车没停在这。");
         }
+        return outCar;
     }
 }

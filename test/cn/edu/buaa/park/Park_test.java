@@ -17,8 +17,7 @@ public class Park_test {
     public void num_should_be_sub_1_when_in_a_car() {
         final int num = 20;
         Park park = new Park(num);
-        Car car = new Car("BENZ");
-        park.in(car);
+        park.in(new Car("BENZ"));
         Assert.assertEquals(park.getNum(), num - 1);
     }
 
@@ -37,23 +36,35 @@ public class Park_test {
         final int num = 20;
         Park park = new Park(num);
         for(int i = 0; i <= num; i ++) {
-            Car car = new Car(String.valueOf(i));
-            park.in(car);
+            park.in(new Car(String.valueOf(i)));
         }
     }
 
-    @Test(expected = ParkException.class)
-    public void out_a_car_when_park_is_empty() {
+//    @Test(expected = ParkException.class)
+//    public void out_a_car_when_park_is_empty() {
+//        Park park = new Park(10);
+//        park.out(new Car("BENZ"));
+//    }
+
+    @Test
+    public void out_benz_when_in_benz() {
         Park park = new Park(10);
-        Car car = new Car("BENZ");
-        park.out(car);
+        park.in(new Car("BENZ"));
+        Assert.assertEquals("BENZ", park.out(new Car("BENZ")).toString());
     }
 
-    @Test(expected = ParkException.class)
+    @Test
     public void out_benz_when_in_bmw() {
         Park park = new Park(10);
-        Car car = new Car("BMW");
-        park.in(car);
-        park.out(new Car("BENZ"));
+        park.in(new Car("BMW"));
+        Assert.assertEquals(null, park.out(new Car("BENZ")));
+    }
+
+    @Test
+    public void out_benz_twice_when_in_benz() {
+        Park park = new Park(10);
+        park.in(new Car("BENZ"));
+        Assert.assertEquals("BENZ", park.out(new Car("BENZ")).toString());
+        Assert.assertEquals(null, park.out(new Car("BENZ")));
     }
 }
