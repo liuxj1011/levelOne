@@ -17,7 +17,7 @@ public class Park_test {
     public void num_should_be_sub_1_when_in_a_car() {
         final int num = 20;
         Park park = new Park(num);
-        Car car = new Car();
+        Car car = new Car("BENZ");
         park.in(car);
         Assert.assertEquals(park.getNum(), num - 1);
     }
@@ -26,7 +26,7 @@ public class Park_test {
     public void num_should_be_add_1_when_out_a_car() {
         final int num = 20;
         Park park = new Park(num);
-        Car car = new Car();
+        Car car = new Car("BMW");
         park.in(car);
         park.out(car);
         Assert.assertEquals(park.getNum(), num);
@@ -37,16 +37,23 @@ public class Park_test {
         final int num = 20;
         Park park = new Park(num);
         for(int i = 0; i <= num; i ++) {
-            Car car = new Car();
+            Car car = new Car(String.valueOf(i));
             park.in(car);
         }
     }
 
     @Test(expected = ParkException.class)
     public void out_a_car_when_park_is_empty() {
-        final int num = 20;
-        Park park = new Park(num);
-        Car car = new Car();
+        Park park = new Park(10);
+        Car car = new Car("BENZ");
         park.out(car);
+    }
+
+    @Test(expected = ParkException.class)
+    public void out_benz_when_in_bmw() {
+        Park park = new Park(10);
+        Car car = new Car("BMW");
+        park.in(car);
+        park.out(new Car("BENZ"));
     }
 }
