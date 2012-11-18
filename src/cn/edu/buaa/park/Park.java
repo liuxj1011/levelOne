@@ -1,7 +1,9 @@
 package cn.edu.buaa.park;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Park {
-    private List<Car> carList = new ArrayList<Car>();
+    private Map<Ticket, Car> carList = new HashMap<Ticket, Car>();
     private int limitNum;
     public Park(int num) {
           this.limitNum = num;
@@ -21,22 +23,19 @@ public class Park {
         return this.limitNum - this.carList.size();
     }
 
-    public void in(Car car) {
+    public Ticket in(Car car) {
         if(this.carList.size() >= this.limitNum) {
             throw new ParkException("停车场已满，不能停车了。");
         }
-        this.carList.add(car);
+        Ticket ticket = new Ticket();
+        this.carList.put(ticket, car);
+        return ticket;
     }
 
-    public Car out(Car car) {
-//        if(this.carList.size() <= 0) {
-//            throw new ParkException("停车场没有停任何车，不能取车。");
-//        }
-        Car outCar = null;
-        if(this.carList.contains(car)) {
-            outCar = this.carList.get(this.carList.indexOf(car));
-            this.carList.remove(car);
+    public Car out(Ticket ticket) {
+        if(this.carList.containsKey(ticket)) {
+            return this.carList.remove(ticket);
         }
-        return outCar;
+        throw new ParkException("没有你要取的车。");
     }
 }

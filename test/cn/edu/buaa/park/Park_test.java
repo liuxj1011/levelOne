@@ -3,8 +3,6 @@ package cn.edu.buaa.park;
 import junit.framework.Assert;
 import org.junit.Test;
 
-import javax.smartcardio.Card;
-
 /**
  * Created with IntelliJ IDEA.
  * User: 刘小军
@@ -17,7 +15,7 @@ public class Park_test {
     public void num_should_be_sub_1_when_in_a_car() {
         final int num = 20;
         Park park = new Park(num);
-        park.in(new Car("BENZ"));
+        park.in(new Car());
         Assert.assertEquals(park.getNum(), num - 1);
     }
 
@@ -25,9 +23,10 @@ public class Park_test {
     public void num_should_be_add_1_when_out_a_car() {
         final int num = 20;
         Park park = new Park(num);
-        Car car = new Car("BMW");
-        park.in(car);
-        park.out(car);
+        Car car = new Car();
+        Ticket ticket = park.in(car);
+        Assert.assertEquals(park.getNum(), num - 1);
+        park.out(ticket);
         Assert.assertEquals(park.getNum(), num);
     }
 
@@ -36,35 +35,37 @@ public class Park_test {
         final int num = 20;
         Park park = new Park(num);
         for(int i = 0; i <= num; i ++) {
-            park.in(new Car(String.valueOf(i)));
+            park.in(new Car());
         }
     }
 
-//    @Test(expected = ParkException.class)
-//    public void out_a_car_when_park_is_empty() {
-//        Park park = new Park(10);
-//        park.out(new Car("BENZ"));
-//    }
-
-    @Test
-    public void out_benz_when_in_benz() {
+    @Test(expected = ParkException.class)
+    public void out_a_car_when_park_is_empty() {
         Park park = new Park(10);
-        park.in(new Car("BENZ"));
-        Assert.assertEquals("BENZ", park.out(new Car("BENZ")).toString());
+        park.out(new Ticket());
     }
 
     @Test
-    public void out_benz_when_in_bmw() {
+    public void out_by_right_ticket_when_in_a_car() {
         Park park = new Park(10);
-        park.in(new Car("BMW"));
-        Assert.assertEquals(null, park.out(new Car("BENZ")));
+        Car car = new Car();
+        Ticket ticket = park.in(car);
+        Assert.assertSame(car, park.out(ticket));
     }
 
-    @Test
-    public void out_benz_twice_when_in_benz() {
+    @Test(expected = ParkException.class)
+    public void out_by_wrong_ticket_when_in_a_car() {
         Park park = new Park(10);
-        park.in(new Car("BENZ"));
-        Assert.assertEquals("BENZ", park.out(new Car("BENZ")).toString());
-        Assert.assertEquals(null, park.out(new Car("BENZ")));
+        park.in(new Car());
+        park.out(new Ticket());
+    }
+
+    @Test(expected = ParkException.class)
+    public void out_by_right_ticket_twice_when_in_a_car() {
+        Park park = new Park(10);
+        Car car = new Car();
+        Ticket ticket = park.in(car);
+        Assert.assertSame(car, park.out(ticket));
+        park.out(ticket);
     }
 }
