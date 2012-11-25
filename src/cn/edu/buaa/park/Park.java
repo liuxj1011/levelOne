@@ -24,7 +24,7 @@ public class Park {
     }
 
     public Ticket in(Car car) {
-        if(this.carList.size() >= this.limitNum) {
+        if(isFull()) {
             throw new ParkException("停车场已满，不能停车了。");
         }
         Ticket ticket = new Ticket();
@@ -37,5 +37,9 @@ public class Park {
             return this.carList.remove(ticket);
         }
         throw new ParkException("没有你要取的车。");
+    }
+
+    public boolean isFull() {
+        return this.carList.size() >= this.limitNum;
     }
 }
