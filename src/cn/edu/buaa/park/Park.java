@@ -23,6 +23,10 @@ public class Park {
         return this.limitNum - this.carList.size();
     }
 
+    public int getLimitNum() {
+        return limitNum;
+    }
+
     public Ticket in(Car car) {
         if(isFull()) {
             throw new ParkException("停车场已满，不能停车了。");

@@ -12,18 +12,23 @@ import java.util.List;
  */
 public class ParkBoy {
     private List<Park> parkList = new ArrayList<Park>();
+    private Strategy strategy;
+
+    public ParkBoy(AverageStrategy cleverStrategy) {
+        cleverStrategy.setParkBoy(this);
+        this.strategy = cleverStrategy;
+    }
+
+    public ParkBoy() {
+        this.strategy = new DefaultStrategy(this);
+    }
 
     public void handlePark(Park park) {
         this.parkList.add(park);
     }
 
     public Ticket in(Car car) {
-        for(Park park : this.parkList) {
-            if (!park.isFull()) {
-                return park.in(car);
-            }
-        }
-        throw new ParkException("没有空的停车位！");
+        return strategy.in(car);
     }
 
     public int getParkSize(int no) {
@@ -47,5 +52,9 @@ public class ParkBoy {
             }
         }
         throw new ParkException("没有您要取的车！");
+    }
+
+    public List<Park> getParkList() {
+        return this.parkList;
     }
 }
