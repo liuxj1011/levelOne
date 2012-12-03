@@ -92,29 +92,152 @@ public class ParkBoy_Test {
     }
 
     /**
-     * 使用平均策略停10辆车时，每个停车场各停5辆车
+     * 使用平均策略停15辆车时，测试每停一辆车后两个停车场的空车位
      */
     @Test
-    public void every_park_stop_five_car_when_in_ten_car_and_average_strategy() {
-        parkBoy.setStrategy(new AverageStrategy());
-        for(int i = 0; i < 10; i ++) {
+    public void in_fifteen_car_when_average_strategy() {
+        parkBoy.setStrategy(StrategyFactory.getStrategy("average"));
+        for(int i = 0; i < 15; i ++) {
             parkBoy.in(new Car());
-            Assert.assertEquals(parkBoy.getParkSize(0), this.FIRST_PARK_SIZE - (i / 2 + 1));
-            Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE - (i + 1) / 2);
+            switch(i) {
+            case 0:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 1:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 9);
+                break;
+            case 2:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 9);
+                break;
+            case 3:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 8);
+                break;
+            case 4:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 8);
+                break;
+            case 5:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 7);
+                break;
+            case 6:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 7);
+                break;
+            case 7:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 6);
+                break;
+            case 8:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 6);
+                break;
+            case 9:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 5);
+                break;
+            case 10:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 4);
+                break;
+            case 11:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 3);
+                break;
+            case 12:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 2);
+                break;
+            case 13:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 1);
+                break;
+            case 14:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 0);
+                break;
+            default:
+            	break;
+            }
         }
     }
 
     /**
-     * 使用平均策略停12辆车时，第一个停车场停5辆车，第二个停车场停7辆车
+     * 使用空置率策略停15辆车时，测试每停一辆车后两个停车场的空车位
      */
     @Test
-    public void first_park_stop_five_car_and_second_park_stop_seven_car_when_in_twelve_car_and_average_strategy() {
-        parkBoy.setStrategy(new AverageStrategy());
-        for(int i = 0; i < 12; i ++) {
+    public void in_fifteen_car_when_rate_strategy() {
+    	parkBoy.setStrategy(StrategyFactory.getStrategy("vacancyRate"));
+        for(int i = 0; i < 15; i ++) {
             parkBoy.in(new Car());
+            switch(i) {
+            case 0:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 1:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 9);
+                break;
+            case 2:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 8);
+                break;
+            case 3:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 8);
+                break;
+            case 4:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 7);
+                break;
+            case 5:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 6);
+                break;
+            case 6:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 6);
+                break;
+            case 7:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 5);
+                break;
+            case 8:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 4);
+                break;
+            case 9:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 4);
+                break;
+            case 10:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 3);
+                break;
+            case 11:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 2);
+                break;
+            case 12:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 2);
+                break;
+            case 13:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 1);
+                break;
+            case 14:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 0);
+                break;
+            default:
+            	break;
+            }
         }
-        Assert.assertEquals(parkBoy.getParkSize(0), 0);
-        Assert.assertEquals(parkBoy.getParkSize(1), 3);
     }
-
 }

@@ -1,5 +1,7 @@
 package cn.edu.buaa.park;
 
+import java.util.List;
+
 /**
  * 停车策略接口类
  * Created with IntelliJ IDEA.
@@ -11,14 +13,9 @@ package cn.edu.buaa.park;
 public interface Strategy {
     /**
      * 停车
-     * @param car   车
-     * @return  停车票据
+     * @param car	车
+     * @param parkList	停车场列表
+     * @return	停车票据
      */
-    public Ticket in(Car car);
-
-    /**
-     * 设置该策略所属的停车BOY
-     * @param parkBoy   停车BOY
-     */
-    public void setParkBoy(ParkBoy parkBoy);
+    public Ticket in(Car car, List<Park> parkList);
 }

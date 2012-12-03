@@ -1,5 +1,7 @@
 package cn.edu.buaa.park;
 
+import java.util.List;
+
 /**
  * 默认策略，先将第一个停车场停满再停第二个停车场
  * Created with IntelliJ IDEA.
@@ -10,8 +12,8 @@ package cn.edu.buaa.park;
  */
 public class DefaultStrategy extends AbstractStrategy implements Strategy {
     @Override
-    public Ticket in(Car car) {
-        for(Park park : parkBoy.getParkList()) {
+    public Ticket in(Car car, List<Park> parkList) {
+        for(Park park : parkList) {
             if (!park.isFull()) {
                 return park.in(car);
             }

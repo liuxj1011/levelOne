@@ -9,7 +9,9 @@ package cn.edu.buaa.park;
  * To change this template use File | Settings | File Templates.
  */
 public class ParkException extends RuntimeException {
-    public ParkException(String msg) {
+	private static final long serialVersionUID = -2323948745820049860L;
+
+	public ParkException(String msg) {
         super(msg);
     }
 }

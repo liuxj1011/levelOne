@@ -37,7 +37,6 @@ public class ParkBoy {
      * @param strategy  停车策略
      */
     public void setStrategy(Strategy strategy) {
-        strategy.setParkBoy(this);
         this.strategy = strategy;
     }
 
@@ -55,7 +54,7 @@ public class ParkBoy {
      * @return  停车票据
      */
     public Ticket in(Car car) {
-        return strategy.in(car);
+        return strategy.in(car, getParkList());
     }
 
     /**
@@ -95,7 +94,9 @@ public class ParkBoy {
      * 获取停车场列表
      * @return  停车场列表
      */
-    public List<Park> getParkList() {
-        return this.parkList;
+    private List<Park> getParkList() {
+    	List<Park> list = new ArrayList<Park>();
+    	list.addAll(this.parkList);
+        return list;
     }
 }
