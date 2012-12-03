@@ -1,6 +1,7 @@
 package cn.edu.buaa.park;
 
 /**
+ * 汽车类
  * Created with IntelliJ IDEA.
  * User: 刘小军
  * Date: 12-11-11

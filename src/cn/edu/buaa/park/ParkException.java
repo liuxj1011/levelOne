@@ -1,6 +1,7 @@
 package cn.edu.buaa.park;
 
 /**
+ * 停车场异常类
  * Created with IntelliJ IDEA.
  * User: 刘小军
  * Date: 12-11-11

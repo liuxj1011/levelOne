@@ -9,7 +9,6 @@ package cn.edu.buaa.park;
  * To change this template use File | Settings | File Templates.
  */
 public class DefaultStrategy extends AbstractStrategy implements Strategy {
-
     @Override
     public Ticket in(Car car) {
         for(Park park : parkBoy.getParkList()) {

@@ -9,7 +9,16 @@ package cn.edu.buaa.park;
  * To change this template use File | Settings | File Templates.
  */
 public interface Strategy {
+    /**
+     * 停车
+     * @param car   车
+     * @return  停车票据
+     */
     public Ticket in(Car car);
 
+    /**
+     * 设置该策略所属的停车BOY
+     * @param parkBoy   停车BOY
+     */
     public void setParkBoy(ParkBoy parkBoy);
 }

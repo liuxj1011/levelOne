@@ -1,7 +1,7 @@
 package cn.edu.buaa.park;
 
 /**
- * 策略抽象类
+ * 停车策略抽象类
  * Created with IntelliJ IDEA.
  * User: 刘小军
  * Date: 12-12-3

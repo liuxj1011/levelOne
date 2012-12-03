@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * 停车BOY测试类
  * Created with IntelliJ IDEA.
  * User: 刘小军
  * Date: 12-11-25
@@ -16,6 +17,10 @@ public class ParkBoy_Test {
     private final int SECOND_PARK_SIZE = 10;
     private ParkBoy parkBoy;
 
+    /**
+     * 初始化数据
+     * 一个停车boy，并且让他管理一个5车位停车场和一个10车位停车场
+     */
     @Before
     public void init() {
         parkBoy = new ParkBoy();
@@ -23,6 +28,9 @@ public class ParkBoy_Test {
         parkBoy.handlePark(new Park(this.SECOND_PARK_SIZE));
     }
 
+    /**
+     * 停一辆车，第一个停车场空车位减一，第二个停车场空车位不变
+     */
     @Test
     public void in_a_car_when_first_park_is_not_full() {
         parkBoy.in(new Car());
@@ -30,6 +38,9 @@ public class ParkBoy_Test {
         Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE);
     }
 
+    /**
+     * 当第一个停车场没有空车位时，再停一辆车（即停六辆车），第二个停车场空车位减一
+     */
     @Test
     public void in_a_car_when_first_park_is_full() {
         for(int i = 0; i <= 5; i ++) {
@@ -38,6 +49,9 @@ public class ParkBoy_Test {
         Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE - 1);
     }
 
+    /**
+     * 停一辆车在第一个停车场，通过票据取出的车即是原来停的那辆车
+     */
     @Test
     public void out_a_car_when_it_parking_first_park() {
         Car car = new Car();
@@ -45,6 +59,9 @@ public class ParkBoy_Test {
         Assert.assertSame(car, parkBoy.out(ticket));
     }
 
+    /**
+     * 停一辆车在第二个停车场，通过票据取出的车即是原来停的那辆车
+     */
     @Test
     public void out_a_car_when_it_parking_second_park() {
         for(int i = 0; i < 5; i ++) {
@@ -56,11 +73,17 @@ public class ParkBoy_Test {
         Assert.assertSame(car, parkBoy.out(ticket));
     }
 
+    /**
+     * 当所有停车场没有停车时，取车引发异常
+     */
     @Test(expected = ParkException.class)
     public void out_a_car_when_all_park_is_empty() {
         parkBoy.out(new Ticket());
     }
 
+    /**
+     * 当所有停车场已满，再进行停车时引发异常
+     */
     @Test(expected = ParkException.class)
     public void in_a_car_when_all_park_is_full() {
         for(int i = 0; i <= 15; i ++) {
@@ -68,6 +91,9 @@ public class ParkBoy_Test {
         }
     }
 
+    /**
+     * 使用平均策略停10辆车时，每个停车场各停5辆车
+     */
     @Test
     public void every_park_stop_five_car_when_in_ten_car_and_average_strategy() {
         parkBoy.setStrategy(new AverageStrategy());
@@ -78,6 +104,9 @@ public class ParkBoy_Test {
         }
     }
 
+    /**
+     * 使用平均策略停12辆车时，第一个停车场停5辆车，第二个停车场停7辆车
+     */
     @Test
     public void first_park_stop_five_car_and_second_park_stop_seven_car_when_in_twelve_car_and_average_strategy() {
         parkBoy.setStrategy(new AverageStrategy());
