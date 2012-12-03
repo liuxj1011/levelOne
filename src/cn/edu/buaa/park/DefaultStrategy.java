@@ -8,19 +8,7 @@ package cn.edu.buaa.park;
  * Time: 下午2:58
  * To change this template use File | Settings | File Templates.
  */
-public class DefaultStrategy implements Strategy {
-    protected ParkBoy parkBoy;
-
-    public DefaultStrategy(ParkBoy parkBoy) {
-        this.parkBoy = parkBoy;
-    }
-
-    public DefaultStrategy() {
-    }
-
-    public void setParkBoy(ParkBoy parkBoy) {
-        this.parkBoy = parkBoy;
-    }
+public class DefaultStrategy extends AbstractStrategy implements Strategy {
 
     @Override
     public Ticket in(Car car) {

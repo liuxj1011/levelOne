@@ -70,9 +70,7 @@ public class ParkBoy_Test {
 
     @Test
     public void every_park_stop_five_car_when_in_ten_car_and_average_strategy() {
-        parkBoy = new ParkBoy(new AverageStrategy());
-        parkBoy.handlePark(new Park(this.FIRST_PARK_SIZE));
-        parkBoy.handlePark(new Park(this.SECOND_PARK_SIZE));
+        parkBoy.setStrategy(new AverageStrategy());
         for(int i = 0; i < 10; i ++) {
             parkBoy.in(new Car());
             Assert.assertEquals(parkBoy.getParkSize(0), this.FIRST_PARK_SIZE - (i / 2 + 1));
@@ -82,9 +80,7 @@ public class ParkBoy_Test {
 
     @Test
     public void first_park_stop_five_car_and_second_park_stop_seven_car_when_in_twelve_car_and_average_strategy() {
-        parkBoy = new ParkBoy(new AverageStrategy());
-        parkBoy.handlePark(new Park(this.FIRST_PARK_SIZE));
-        parkBoy.handlePark(new Park(this.SECOND_PARK_SIZE));
+        parkBoy.setStrategy(new AverageStrategy());
         for(int i = 0; i < 12; i ++) {
             parkBoy.in(new Car());
         }

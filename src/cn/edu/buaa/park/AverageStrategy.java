@@ -8,14 +8,7 @@ package cn.edu.buaa.park;
  * Time: 下午2:54
  * To change this template use File | Settings | File Templates.
  */
-public class AverageStrategy extends DefaultStrategy implements Strategy {
-    public AverageStrategy(ParkBoy parkBoy) {
-        super(parkBoy);
-    }
-
-    public AverageStrategy() {
-        super();
-    }
+public class AverageStrategy extends AbstractStrategy implements Strategy {
 
     @Override
     public Ticket in(Car car) {

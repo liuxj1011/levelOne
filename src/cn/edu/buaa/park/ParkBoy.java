@@ -14,13 +14,17 @@ public class ParkBoy {
     private List<Park> parkList = new ArrayList<Park>();
     private Strategy strategy;
 
-    public ParkBoy(AverageStrategy cleverStrategy) {
-        cleverStrategy.setParkBoy(this);
-        this.strategy = cleverStrategy;
+    public ParkBoy(Strategy strategy) {
+        setStrategy(strategy);
     }
 
     public ParkBoy() {
-        this.strategy = new DefaultStrategy(this);
+        setStrategy(new DefaultStrategy());
+    }
+
+    public void setStrategy(Strategy strategy) {
+        strategy.setParkBoy(this);
+        this.strategy = strategy;
     }
 
     public void handlePark(Park park) {

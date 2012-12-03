@@ -10,4 +10,6 @@ package cn.edu.buaa.park;
  */
 public interface Strategy {
     public Ticket in(Car car);
+
+    public void setParkBoy(ParkBoy parkBoy);
 }
