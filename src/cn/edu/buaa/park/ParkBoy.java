@@ -58,18 +58,6 @@ public class ParkBoy {
     }
 
     /**
-     * 获取指定停车场的空车位
-     * @param no    停车场序号
-     * @return  停车场空车位
-     */
-    public int getParkSize(int no) {
-        if(no >= this.parkList.size()) {
-            throw new ParkException("找不到你需要的停车场！");
-        }
-        return this.parkList.get(no).getNum();
-    }
-
-    /**
      * 取车
      * @param ticket    停车票据
      * @return  车
@@ -90,7 +78,72 @@ public class ParkBoy {
         throw new ParkException("没有您要取的车！");
     }
 
+	/**
+	 * 判断所管理的停车场是否已满
+	 * @return true-已满 false-未满
+	 */
+	public boolean isFull() {
+		for(Park park : this.parkList) {
+			if(!park.isFull()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+     * 根据停车票据判断是否停在这
+     * @param ticket	票据ID
+     * @return	true-是 false-否
+     */
+    public boolean contain(Ticket ticket) {
+    	for(Park park : this.parkList) {
+			if(park.contain(ticket)) {
+				return true;
+			}
+		}
+		return false;
+    }
+    
     /**
+	 * 获取所有停车场的空车位数量
+	 * @return	空车位数量
+	 */
+	public int getEmptyNum() {
+		List<Park> list = getParkList();
+		int num = 0;
+		for(Park park : list) {
+			num += park.getEmptyNum();
+		}
+		return num;
+	}
+	
+	/**
+	 * 获取所有停车场的车位总数
+	 * @return	车位总数
+	 */
+	public int getTotalNum() {
+		List<Park> list = getParkList();
+		int num = 0;
+		for(Park park : list) {
+			num += park.getTotalNum();
+		}
+		return num;
+	}
+	
+	/**
+     * 获取指定停车场的空车位（该方法为测试专用，其他地方不要使用）
+     * @param no    停车场序号
+     * @return  停车场空车位
+     */
+    public int getParkSize(int no) {
+        if(no >= this.parkList.size()) {
+            throw new ParkException("找不到你需要的停车场！");
+        }
+        return this.parkList.get(no).getEmptyNum();
+    }
+	
+	/**
      * 获取停车场列表
      * @return  停车场列表
      */

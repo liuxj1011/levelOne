@@ -21,11 +21,11 @@ public class AverageStrategy extends AbstractStrategy implements Strategy {
                 continue;
             }
             if(num < 0) {
-                num = park.getLimitNum() - park.getNum();
+                num = park.getTotalNum() - park.getEmptyNum();
                 no = i;
             }
-            if((park.getLimitNum() - park.getNum()) < num) {
-                num = park.getLimitNum() - park.getNum();
+            if((park.getTotalNum() - park.getEmptyNum()) < num) {
+                num = park.getTotalNum() - park.getEmptyNum();
                 no = i;
             }
         }

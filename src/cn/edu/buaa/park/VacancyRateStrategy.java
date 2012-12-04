@@ -21,7 +21,7 @@ public class VacancyRateStrategy extends AbstractStrategy implements Strategy {
             if(park.isFull()) {
                 continue;
             }
-            double _rate = Math.round((float)park.getNum() / (float)park.getLimitNum() * 10000) / 10000.0;
+            double _rate = Math.round((float)park.getEmptyNum() / (float)park.getTotalNum() * 10000) / 10000.0;
             if(num < 0d) {
                 num = _rate;
                 no = i;

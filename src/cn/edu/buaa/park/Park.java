@@ -15,30 +15,14 @@ public class Park {
     // 用来存放票据和车辆的对应关系
     private Map<Ticket, Car> carList = new HashMap<Ticket, Car>();
     // 车位数
-    private int limitNum;
+    private int totalNum;
 
     /**
      * 停车场构造器
      * @param num 车位数
      */
     public Park(int num) {
-          this.limitNum = num;
-    }
-
-    /**
-     * 获取空车位数量
-     * @return      空车位数量
-     */
-    public int getNum() {
-        return this.limitNum - this.carList.size();
-    }
-
-    /**
-     * 获取车位数
-     * @return  车位数
-     */
-    public int getLimitNum() {
-        return limitNum;
+          this.totalNum = num;
     }
 
     /**
@@ -61,7 +45,7 @@ public class Park {
      * @return  车
      */
     public Car out(Ticket ticket) {
-        if(this.carList.containsKey(ticket)) {
+        if(contain(ticket)) {
             return this.carList.remove(ticket);
         }
         throw new ParkException("没有你要取的车。");
@@ -72,6 +56,31 @@ public class Park {
      * @return  true-已满 false-未满
      */
     public boolean isFull() {
-        return this.carList.size() >= this.limitNum;
+        return this.carList.size() >= this.totalNum;
+    }
+    
+    /**
+     * 根据停车票据判断是否停在这
+     * @param ticket	票据ID
+     * @return	true-是 false-否
+     */
+    public boolean contain(Ticket ticket) {
+    	return this.carList.containsKey(ticket);
+    }
+    
+    /**
+     * 获取空车位数量
+     * @return      空车位数量
+     */
+    public int getEmptyNum() {
+        return this.totalNum - this.carList.size();
+    }
+
+    /**
+     * 获取车位数
+     * @return  车位数
+     */
+    public int getTotalNum() {
+        return totalNum;
     }
 }

@@ -20,7 +20,7 @@ public class Park_Test {
         final int num = 20;
         Park park = new Park(num);
         park.in(new Car());
-        Assert.assertEquals(park.getNum(), num - 1);
+        Assert.assertEquals(park.getEmptyNum(), num - 1);
     }
 
     /**
@@ -32,9 +32,9 @@ public class Park_Test {
         Park park = new Park(num);
         Car car = new Car();
         Ticket ticket = park.in(car);
-        Assert.assertEquals(park.getNum(), num - 1);
+        Assert.assertEquals(park.getEmptyNum(), num - 1);
         park.out(ticket);
-        Assert.assertEquals(park.getNum(), num);
+        Assert.assertEquals(park.getEmptyNum(), num);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Park_Test {
     }
 
     /**
-     * 当用错误的票据取两次车时将引发异常
+     * 当用正确的票据取两次车时将引发异常
      */
     @Test(expected = ParkException.class)
     public void out_by_right_ticket_twice_when_in_a_car() {

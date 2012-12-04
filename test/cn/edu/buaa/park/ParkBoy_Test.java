@@ -13,8 +13,6 @@ import org.junit.Test;
  * To change this template use File | Settings | File Templates.
  */
 public class ParkBoy_Test {
-    private final int FIRST_PARK_SIZE = 5;
-    private final int SECOND_PARK_SIZE = 10;
     private ParkBoy parkBoy;
 
     /**
@@ -24,29 +22,93 @@ public class ParkBoy_Test {
     @Before
     public void init() {
         parkBoy = new ParkBoy();
-        parkBoy.handlePark(new Park(this.FIRST_PARK_SIZE));
-        parkBoy.handlePark(new Park(this.SECOND_PARK_SIZE));
+        parkBoy.handlePark(new Park(5));
+        parkBoy.handlePark(new Park(10));
     }
-
+    
     /**
-     * 停一辆车，第一个停车场空车位减一，第二个停车场空车位不变
+     * 使用默认策略停15辆车时，测试每停一辆车后两个停车场的空车位
      */
     @Test
-    public void in_a_car_when_first_park_is_not_full() {
-        parkBoy.in(new Car());
-        Assert.assertEquals(parkBoy.getParkSize(0), this.FIRST_PARK_SIZE - 1);
-        Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE);
-    }
-
-    /**
-     * 当第一个停车场没有空车位时，再停一辆车（即停六辆车），第二个停车场空车位减一
-     */
-    @Test
-    public void in_a_car_when_first_park_is_full() {
-        for(int i = 0; i <= 5; i ++) {
+    public void in_fifteen_car_when_default_strategy() {
+        for(int i = 0; i < 15; i ++) {
             parkBoy.in(new Car());
+            switch(i) {
+            case 0:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 4);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 1:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 3);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 2:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 2);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 3:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 1);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 4:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 10);
+                break;
+            case 5:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 9);
+                break;
+            case 6:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 8);
+                break;
+            case 7:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 7);
+                break;
+            case 8:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 6);
+                break;
+            case 9:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 5);
+                break;
+            case 10:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 4);
+                break;
+            case 11:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 3);
+                break;
+            case 12:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 2);
+                break;
+            case 13:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 1);
+                break;
+            case 14:
+            	Assert.assertEquals(parkBoy.getParkSize(0), 0);
+                Assert.assertEquals(parkBoy.getParkSize(1), 0);
+                break;
+            default:
+            	break;
+            }
         }
-        Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE - 1);
+    }
+    
+    /**
+     * 使用默认策略停15辆车时，测试每停一辆车后停车BOY的所有空车位
+     */
+    @Test
+    public void test_empty_num_when_in_fifteen_car_and_default_strategy() {
+        for(int i = 0; i < 15; i ++) {
+            parkBoy.in(new Car());
+            Assert.assertEquals(parkBoy.getEmptyNum(), 15 - i - 1);
+        }
     }
 
     /**
@@ -69,7 +131,7 @@ public class ParkBoy_Test {
         }
         Car car = new Car();
         Ticket ticket = parkBoy.in(car);
-        Assert.assertEquals(parkBoy.getParkSize(1), this.SECOND_PARK_SIZE - 1);
+        Assert.assertEquals(parkBoy.getParkSize(1), 9);
         Assert.assertSame(car, parkBoy.out(ticket));
     }
 
@@ -165,6 +227,18 @@ public class ParkBoy_Test {
             }
         }
     }
+    
+    /**
+     * 使用平均策略停15辆车时，测试每停一辆车后停车BOY的所有空车位
+     */
+    @Test
+    public void test_empty_num_when_in_fifteen_car_and_average_strategy() {
+        parkBoy.setStrategy(StrategyFactory.getStrategy("average"));
+        for(int i = 0; i < 15; i ++) {
+            parkBoy.in(new Car());
+            Assert.assertEquals(parkBoy.getEmptyNum(), 15 - i - 1);
+        }
+    }
 
     /**
      * 使用空置率策略停15辆车时，测试每停一辆车后两个停车场的空车位
@@ -238,6 +312,18 @@ public class ParkBoy_Test {
             default:
             	break;
             }
+        }
+    }
+    
+    /**
+     * 使用空置率策略停15辆车时，测试每停一辆车后停车BOY的所有空车位
+     */
+    @Test
+    public void test_empty_num_when_in_fifteen_car_and_rate_strategy() {
+        parkBoy.setStrategy(StrategyFactory.getStrategy("vacancyRate"));
+        for(int i = 0; i < 15; i ++) {
+            parkBoy.in(new Car());
+            Assert.assertEquals(parkBoy.getEmptyNum(), 15 - i - 1);
         }
     }
 }
