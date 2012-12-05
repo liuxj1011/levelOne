@@ -171,7 +171,7 @@ public class ParkMain extends ParkOperator{
 		System.out.println("北京航空航天大学软件学院——一级工程实践考试");
 		System.out.println("");
 		System.out.println("刘小军(GS1221532)");
-		System.out.println("齐     琦(GS1221532)");
+		System.out.println("齐  琦(GS1221323)");
 		System.out.println("=========================================");
 	}
 	
