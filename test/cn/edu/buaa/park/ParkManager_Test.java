@@ -33,7 +33,7 @@ public class ParkManager_Test {
 	@Test
 	public void test_empty_num_when_in_thirty_three_car() {
         for(int i = 0; i < 33; i ++) {
-            manager.in(new Car());
+            manager.in(new Car(String.valueOf(i)));
             Assert.assertEquals(manager.getEmptyNum(), 33 - i - 1);
         }
     }
@@ -41,7 +41,7 @@ public class ParkManager_Test {
 	@Test(expected = ParkException.class)
 	public void in_a_car_when_all_park_is_full() {
         for(int i = 0; i < 34; i ++) {
-            manager.in(new Car());
+            manager.in(new Car(String.valueOf(i)));
         }
     }
 	

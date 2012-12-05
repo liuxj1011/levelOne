@@ -45,7 +45,7 @@ public class Park_Test {
         final int num = 20;
         Park park = new Park(num);
         for(int i = 0; i <= num; i ++) {
-            park.in(new Car());
+            park.in(new Car(String.valueOf(i)));
         }
     }
 
@@ -75,8 +75,8 @@ public class Park_Test {
     @Test(expected = ParkException.class)
     public void out_by_wrong_ticket_when_in_a_car() {
         Park park = new Park(10);
-        park.in(new Car());
-        park.out(new Ticket());
+        park.in(new Car("京A123456"));
+        park.out(new Ticket("京B123456"));
     }
 
     /**
