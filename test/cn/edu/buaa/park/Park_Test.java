@@ -1,6 +1,6 @@
 package cn.edu.buaa.park;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
