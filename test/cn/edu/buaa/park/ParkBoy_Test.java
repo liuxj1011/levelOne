@@ -11,7 +11,7 @@ import org.junit.Test;
  * Time: 下午2:26
  * To change this template use File | Settings | File Templates.
  */
-public class ParkBoy_test {
+public class ParkBoy_Test {
     private final int FIRST_PARK_SIZE = 5;
     private final int SECOND_PARK_SIZE = 10;
     private ParkBoy parkBoy;
