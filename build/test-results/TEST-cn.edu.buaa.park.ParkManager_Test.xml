@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="thinkpad-t61" name="cn.edu.buaa.park.ParkManager_Test" tests="3" time="0.0" timestamp="2012-12-20T14:43:39">
+<testsuite errors="0" failures="0" hostname="Rain-PC" name="cn.edu.buaa.park.ParkManager_Test" tests="3" time="0.016" timestamp="2012-12-20T15:04:21">
   <properties />
   <testcase classname="cn.edu.buaa.park.ParkManager_Test" name="in_a_car_when_all_park_is_full" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkManager_Test" name="test_empty_num_when_in_thirty_three_car" time="0.0" />

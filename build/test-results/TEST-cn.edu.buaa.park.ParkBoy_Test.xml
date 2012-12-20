@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="thinkpad-t61" name="cn.edu.buaa.park.ParkBoy_Test" tests="10" time="0.047" timestamp="2012-12-20T14:43:39">
+<testsuite errors="0" failures="0" hostname="Rain-PC" name="cn.edu.buaa.park.ParkBoy_Test" tests="10" time="0.015" timestamp="2012-12-20T15:04:21">
   <properties />
-  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_default_strategy" time="0.0" />
+  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_default_strategy" time="0.015" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="test_empty_num_when_in_fifteen_car_and_default_strategy" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="out_a_car_when_it_parking_first_park" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="out_a_car_when_it_parking_second_park" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="out_a_car_when_all_park_is_empty" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_a_car_when_all_park_is_full" time="0.0" />
-  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_average_strategy" time="0.015" />
+  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_average_strategy" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="test_empty_num_when_in_fifteen_car_and_average_strategy" time="0.0" />
-  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_rate_strategy" time="0.016" />
+  <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="in_fifteen_car_when_rate_strategy" time="0.0" />
   <testcase classname="cn.edu.buaa.park.ParkBoy_Test" name="test_empty_num_when_in_fifteen_car_and_rate_strategy" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

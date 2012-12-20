@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="thinkpad-t61" name="cn.edu.buaa.park.Park_Test" tests="7" time="0.016" timestamp="2012-12-20T14:43:39">
+<testsuite errors="0" failures="0" hostname="Rain-PC" name="cn.edu.buaa.park.Park_Test" tests="7" time="0.016" timestamp="2012-12-20T15:04:21">
   <properties />
   <testcase classname="cn.edu.buaa.park.Park_Test" name="num_should_be_sub_1_when_in_a_car" time="0.0" />
   <testcase classname="cn.edu.buaa.park.Park_Test" name="num_should_be_add_1_when_out_a_car" time="0.0" />

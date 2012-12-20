@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="thinkpad-t61" name="cn.edu.buaa.guessnumber.GuessNumber_Test" tests="9" time="0.125" timestamp="2012-12-20T14:43:39">
+<testsuite errors="0" failures="0" hostname="Rain-PC" name="cn.edu.buaa.guessnumber.GuessNumber_Test" tests="9" time="0.156" timestamp="2012-12-20T15:04:21">
   <properties />
   <testcase classname="cn.edu.buaa.guessnumber.GuessNumber_Test" name="should_be_return_1a0b" time="0.016" />
   <testcase classname="cn.edu.buaa.guessnumber.GuessNumber_Test" name="should_be_return_2a0b" time="0.0" />
