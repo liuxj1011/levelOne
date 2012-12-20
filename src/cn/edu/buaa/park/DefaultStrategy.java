@@ -11,7 +11,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class DefaultStrategy extends AbstractStrategy implements Strategy {
-    @Override
     public Ticket in(Car car, List<Park> parkList) {
         for(Park park : parkList) {
             if (!park.isFull()) {

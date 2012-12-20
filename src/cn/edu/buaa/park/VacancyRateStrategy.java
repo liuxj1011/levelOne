@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class VacancyRateStrategy extends AbstractStrategy implements Strategy {
 
-	@Override
 	public Ticket in(Car car, List<Park> parkList) {
 		int no = -1;
 		double num = -1d;

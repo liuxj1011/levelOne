@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="thinkpad-t61" name="cn.edu.buaa.stack.Stack_Test" tests="8" time="0.0" timestamp="2012-12-20T14:43:39">
+  <properties />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="stack_size_is_0_when_create_stack" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="stack_size_is_1_when_push_a_object" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="pop_stack_return_a_when_push_a_first" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="pop_stack_return_dcba_when_push_abcd" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="stack_size_is_0_when_stack_clear" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="construct_stack_throw_exception_when_size_less_than_0" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="push_stack_throw_exception_when_stack_is_full" time="0.0" />
+  <testcase classname="cn.edu.buaa.stack.Stack_Test" name="pop_stack_throw_exception_when_stack_is_empty" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

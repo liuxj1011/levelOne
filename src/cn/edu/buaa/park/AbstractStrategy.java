@@ -11,6 +11,5 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class AbstractStrategy implements Strategy {
-    @Override
     public abstract Ticket in(Car car, List<Park> parkList);
 }

@@ -218,7 +218,6 @@ public class ParkBoy extends ParkOperator{
 		this.menuList.add("2.查看管理的所有停车场信息；");
 	}
 
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -226,7 +225,6 @@ public class ParkBoy extends ParkOperator{
 		return result;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -243,7 +241,6 @@ public class ParkBoy extends ParkOperator{
 		return true;
 	}
 
-	@Override
 	public void run(String input) {
 		if("0".equals(input)) {
 			inCar();

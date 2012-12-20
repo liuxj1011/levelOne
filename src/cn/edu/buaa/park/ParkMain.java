@@ -21,7 +21,6 @@ public class ParkMain extends ParkOperator{
 		this.menuList.add("1:作为停车场经理进入；");
 		this.menuList.add("2:作为停车BOY进入；");
 	}
-	@Override
 	public void run(String input) {
 		ParkOperator operator = null;
 		if("0".equals(input)) {

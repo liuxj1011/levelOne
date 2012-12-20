@@ -14,7 +14,6 @@ public class ParkDirector extends ParkOperator{
 		this.menuList.add("7:查看所有停车场信息；");
 	}
 
-	@Override
 	public void run(String input) {
 		if("0".equals(input)) {
 			printEmployee();
